@@ -27,6 +27,7 @@ export async function SiteHeader() {
 
         <nav aria-label="Main" className="flex items-center gap-3 text-sm sm:gap-5">
           <Link href="/" className="hidden text-muted hover:text-text sm:inline">Read</Link>
+          <Link href="/news" className="hidden text-muted hover:text-text sm:inline">AI news</Link>
           <Link href="/chat" className="hidden text-muted hover:text-text sm:inline">AI chat</Link>
           <Link href="/about" className="hidden text-muted hover:text-text sm:inline">About</Link>
           {signedIn ? (
