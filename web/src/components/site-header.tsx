@@ -14,35 +14,34 @@ async function getHandle() {
   return { signedIn: true, handle: data?.handle ?? null };
 }
 
+const navLink = "text-[0.95rem] text-muted hover:text-text";
+
 export async function SiteHeader() {
   const { signedIn, handle } = await getHandle();
 
   return (
     <header className="border-b border-border">
-      <div className="wrap flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex shrink-0 items-center gap-2 font-serif text-lg font-semibold sm:gap-2.5 sm:text-xl" aria-label="DevLetters home">
-          <span className="grid h-7 w-7 place-items-center rounded-md bg-accent text-base text-accent-ink">D</span>
-          DevLetters
+      <div className="wrap flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-5">
+        <Link href="/" aria-label="DevLetters home" className="font-serif text-3xl font-medium tracking-tight">
+          Dev<span className="text-accent">Letters</span>
         </Link>
 
-        <nav aria-label="Main" className="flex items-center gap-3 text-sm sm:gap-5">
-          <Link href="/" className="hidden text-muted hover:text-text sm:inline">Read</Link>
-          <Link href="/news" className="hidden text-muted hover:text-text sm:inline">AI news</Link>
-          <Link href="/chat" className="hidden text-muted hover:text-text sm:inline">AI chat</Link>
-          <Link href="/about" className="hidden text-muted hover:text-text sm:inline">About</Link>
+        <nav aria-label="Main" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Link href="/" className={navLink}>Read</Link>
+          <Link href="/news" className={navLink}>AI news</Link>
+          <Link href="/chat" className={navLink}>AI chat</Link>
+          <Link href="/about" className={navLink}>About</Link>
           {signedIn ? (
             <>
-              {handle && (
-                <Link href={`/u/${handle}`} className="hidden text-muted hover:text-text sm:inline">Profile</Link>
-              )}
-              <Link href="/settings" className="text-muted hover:text-text">Settings</Link>
+              {handle && <Link href={`/u/${handle}`} className={navLink}>Profile</Link>}
+              <Link href="/settings" className={navLink}>Settings</Link>
               <form action="/auth/signout" method="post">
-                <button type="submit" className="text-muted hover:text-text">Sign out</button>
+                <button type="submit" className={navLink}>Sign out</button>
               </form>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-muted hover:text-text">Log in</Link>
+              <Link href="/login" className={navLink}>Log in</Link>
               <Link href="/signup" className="btn btn-primary !px-4 !py-1.5 !text-sm">Sign up</Link>
             </>
           )}

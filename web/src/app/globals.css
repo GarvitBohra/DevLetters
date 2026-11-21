@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Simple and cozy: warm paper, soft ink, one terracotta accent, easy reading. */
 :root {
   --bg: #f3eee4;
   --bg2: #fbf8f2;
@@ -8,6 +9,7 @@
   --border: #d9d1c2;
   --accent: #b4502a;
   --accent-ink: #ffffff;
+  --plate: #e7dfcf;
 }
 
 :root[data-theme="dark"] {
@@ -18,6 +20,7 @@
   --border: #352f28;
   --accent: #e07a4f;
   --accent-ink: #171411;
+  --plate: #221d18;
 }
 
 @theme inline {
@@ -28,8 +31,9 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-newsreader);
   --font-serif: var(--font-fraunces);
+  --font-reading: var(--font-newsreader);
 }
 
 html {
@@ -39,8 +43,14 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-inter), system-ui, sans-serif;
-  line-height: 1.65;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 :focus-visible {
@@ -48,18 +58,26 @@ body {
   outline-offset: 3px;
 }
 
-/* Page content width used by header, main and footer. */
+/* One comfortable reading column used by header, main and footer. */
 .wrap {
   width: min(760px, 100% - 40px);
   margin-inline: auto;
 }
 
+/* Small section labels. */
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 /* Shared form styling */
 .field-input {
   width: 100%;
-  padding: 0.75rem 0.875rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 10px;
   background: var(--bg2);
   color: var(--text);
 }
@@ -74,9 +92,9 @@ body {
   justify-content: center;
   padding: 0.7rem 1.4rem;
   border: 1px solid var(--text);
-  border-radius: 6px;
+  border-radius: 10px;
   font-weight: 600;
-  font-size: 0.93rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
@@ -93,6 +111,10 @@ body {
 .btn-ghost:hover {
   background: var(--text);
   color: var(--bg);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 @media (prefers-reduced-motion: reduce) {

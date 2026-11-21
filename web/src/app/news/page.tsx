@@ -21,22 +21,22 @@ export default async function NewsPage() {
   const today = new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 
   return (
-    <section className="mx-auto max-w-2xl py-16">
-      <p className="mb-1 text-sm uppercase tracking-widest text-muted">{today}</p>
-      <h1 className="mb-2 font-serif text-4xl font-medium tracking-tight">Top 10 AI news</h1>
+    <section className="mx-auto max-w-3xl py-14">
+      <p className="label mb-2 text-muted">{today}</p>
+      <h1 className="mb-3 font-serif text-5xl font-medium leading-none tracking-tight sm:text-6xl">Top 10 AI news</h1>
       <p className="mb-8 text-muted">
         The most-discussed AI stories {windowHours === 24 ? "of the last 24 hours" : "of the last few days (a quiet day)"}, ranked by votes on Hacker News. Updated every 30 minutes.
       </p>
 
       {items.length === 0 ? (
-        <p className="rounded-lg border border-border p-4 text-muted">Could not load the news right now. Please try again in a few minutes.</p>
+        <p className="border border-border p-4 text-muted">Could not load the news right now. Please try again in a few minutes.</p>
       ) : (
         <ol className="divide-y divide-border border-y border-border">
           {items.map((item, i) => (
             <li key={item.id} className="flex gap-4 py-4">
-              <span className="w-7 shrink-0 font-serif text-2xl text-accent">{i + 1}</span>
+              <span className="w-10 shrink-0 font-serif text-3xl leading-none">{String(i + 1).padStart(2, "0")}</span>
               <div className="min-w-0">
-                <a href={item.url} target="_blank" rel="noopener noreferrer" className="font-medium leading-snug hover:text-accent">
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="font-medium leading-snug hover:underline">
                   {item.title}
                 </a>
                 <p className="mt-1 text-sm text-muted">

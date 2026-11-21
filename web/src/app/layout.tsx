@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Newsreader } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
+// Headings: Fraunces (warm, soft serif). Reading text: Newsreader.
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], style: ["normal", "italic"] });
+const newsreader = Newsreader({ variable: "--font-newsreader", subsets: ["latin"], style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   title: { default: "DevLetters – A place to read and write", template: "%s – DevLetters" },
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       data-theme="light"
       suppressHydrationWarning
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${newsreader.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

@@ -37,7 +37,7 @@ export function AiChat() {
 
   return (
     <div>
-      <div className="min-h-64 space-y-4 rounded-lg border border-border p-4" aria-live="polite">
+      <div className="min-h-64 space-y-4 border border-border p-4" aria-live="polite">
         {messages.length === 0 && (
           <div>
             <p className="mb-3 text-muted">Ask me anything. Try one of these:</p>
@@ -53,7 +53,7 @@ export function AiChat() {
         {messages.map((m, i) => (
           <div key={i} className={m.role === "user" ? "text-right" : ""}>
             <div
-              className={`inline-block max-w-full whitespace-pre-wrap rounded-lg px-4 py-2.5 text-left ${
+              className={`inline-block max-w-full whitespace-pre-wrap px-4 py-2.5 text-left ${
                 m.role === "user" ? "bg-accent text-accent-ink" : "border border-border"
               }`}
             >
