@@ -1,5 +1,5 @@
--- Pagewise: profiles table + security rules.
--- Run this once in Supabase: SQL Editor -> New query -> paste -> Run.
+-- DevLetters: profiles table + security rules.
+-- Run in Supabase: SQL Editor -> New query -> paste -> Run. Safe to run more than once.
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
@@ -13,20 +13,24 @@ create table if not exists public.profiles (
 alter table public.profiles enable row level security;
 
 -- Anyone can read profiles (they are public author pages).
+drop policy if exists "Profiles are public" on public.profiles;
 create policy "Profiles are public"
   on public.profiles for select
   using (true);
 
 -- A user can only create/update/delete their own profile.
+drop policy if exists "Users insert own profile" on public.profiles;
 create policy "Users insert own profile"
   on public.profiles for insert
   with check (auth.uid() = id);
 
+drop policy if exists "Users update own profile" on public.profiles;
 create policy "Users update own profile"
   on public.profiles for update
   using (auth.uid() = id)
   with check (auth.uid() = id);
 
+drop policy if exists "Users delete own profile" on public.profiles;
 create policy "Users delete own profile"
   on public.profiles for delete
   using (auth.uid() = id);
@@ -59,3 +63,9 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- Access grants. Row Level Security (above) still limits what each user can do.
+-- Newer Supabase projects do not grant these automatically.
+grant usage on schema public to anon, authenticated;
+grant select on public.profiles to anon, authenticated;
+grant insert, update, delete on public.profiles to authenticated;

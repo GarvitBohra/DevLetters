@@ -8,13 +8,13 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: "Pagewise – A place to read and write", template: "%s – Pagewise" },
+  title: { default: "DevLetters – A place to read and write", template: "%s – DevLetters" },
   description:
-    "Pagewise is a quiet place to read and write. Practical essays and guides on writing and clear thinking.",
+    "DevLetters is a quiet place to read and write. Practical essays and guides on writing and clear thinking.",
 };
 
 // Applies the saved theme before the page paints, so there is no light/dark flash.
-const themeScript = `try{var t=localStorage.getItem('pagewise.theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+const themeScript = `try{var t=localStorage.getItem('devletters.theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

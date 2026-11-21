@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Notice, SetupNotice } from "@/components/notice";
+import { PasswordInput } from "@/components/password-input";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { signup } from "../actions";
 
@@ -43,7 +44,7 @@ export default async function SignupPage({ searchParams }: Props) {
         </label>
         <label className="block">
           <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Password</span>
-          <input name="password" type="password" minLength={8} autoComplete="new-password" required className="field-input" />
+          <PasswordInput name="password" minLength={8} autoComplete="new-password" />
           <span className="mt-1 block text-xs text-muted">At least 8 characters.</span>
         </label>
         <button type="submit" className="btn btn-primary w-full">Create account</button>

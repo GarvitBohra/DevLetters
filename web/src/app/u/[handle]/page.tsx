@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!profile) return {};
   return {
     title: profile.display_name || `@${profile.handle}`,
-    description: profile.bio || `Articles by @${profile.handle} on Pagewise.`,
+    description: profile.bio || `Articles by @${profile.handle} on DevLetters.`,
   };
 }
 

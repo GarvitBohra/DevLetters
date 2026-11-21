@@ -14,12 +14,12 @@ export type Post = {
 export const samplePosts: Post[] = [
   {
     slug: "welcome",
-    title: "Welcome to Pagewise",
+    title: "Welcome to DevLetters",
     date: "2026-11-21",
     tags: ["meta"],
     excerpt: "Why this blog exists, who it is for, and what you can expect to read here.",
     body: [
-      { type: "p", text: "Pagewise is a quiet place to read and write. No feeds built to keep you scrolling, no noise, just good writing." },
+      { type: "p", text: "DevLetters is a quiet place to read and write. No feeds built to keep you scrolling, no noise, just good writing." },
       { type: "h2", text: "Why this exists" },
       { type: "p", text: "Most blogging platforms are crowded. This one is small on purpose, so writers can publish without distraction and readers can find work worth their time." },
       { type: "quote", text: "Good writing is mostly rewriting." },

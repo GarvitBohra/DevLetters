@@ -6,7 +6,7 @@ export function ThemeToggle() {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
     try {
-      localStorage.setItem("pagewise.theme", next);
+      localStorage.setItem("devletters.theme", next);
     } catch {
       // Storage can be blocked; the theme still changes for this visit.
     }

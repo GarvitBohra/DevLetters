@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Notice, SetupNotice } from "@/components/notice";
+import { PasswordInput } from "@/components/password-input";
 import { safeNext } from "@/lib/auth-helpers";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { login } from "../actions";
@@ -11,6 +12,12 @@ type Props = { searchParams: Promise<{ error?: string; message?: string; next?: 
 
 export default async function LoginPage({ searchParams }: Props) {
   const { error, message, next } = await searchParams;
+
+  // Dev-only convenience: prefill a test account from .env.local.
+  // Never active in production builds, so no credentials reach real visitors.
+  const isDev = process.env.NODE_ENV === "development";
+  const devEmail = isDev ? process.env.DEV_LOGIN_EMAIL : undefined;
+  const devPassword = isDev ? process.env.DEV_LOGIN_PASSWORD : undefined;
 
   return (
     <section className="mx-auto max-w-md py-16">
@@ -23,11 +30,11 @@ export default async function LoginPage({ searchParams }: Props) {
         <input type="hidden" name="next" value={safeNext(next)} />
         <label className="block">
           <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Email</span>
-          <input name="email" type="email" autoComplete="email" required className="field-input" />
+          <input name="email" type="email" autoComplete="email" required defaultValue={devEmail} className="field-input" />
         </label>
         <label className="block">
           <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Password</span>
-          <input name="password" type="password" autoComplete="current-password" required className="field-input" />
+          <PasswordInput name="password" autoComplete="current-password" defaultValue={devPassword} />
         </label>
         <button type="submit" className="btn btn-primary w-full">Log in</button>
       </form>
